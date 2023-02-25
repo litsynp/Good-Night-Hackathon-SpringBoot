@@ -27,9 +27,12 @@ class ReviewController(
     @GetMapping
     fun findReviews(
         @PageableDefault(size = 20, sort = ["createdAt"], direction = Sort.Direction.DESC)
-        pageable: Pageable
+        pageable: Pageable,
+
+        @RequestParam(value = "title", required = false) title: String?,
+        @RequestParam(value = "content", required = false) content: String?,
     ): ResponseEntity<Page<ReviewResponse>> {
-        val reviews = reviewService.findReviews(pageable)
+        val reviews = reviewService.findReviews(pageable, title, content)
         return ResponseEntity.ok(reviews)
     }
 

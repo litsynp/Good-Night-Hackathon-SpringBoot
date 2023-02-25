@@ -18,8 +18,9 @@ class ReviewService(
 ) {
 
     @Transactional(readOnly = true)
-    fun findReviews(pageable: Pageable): Page<ReviewResponse> {
-        val reviews = reviewRepository.findAll(pageable)
+    fun findReviews(pageable: Pageable, title: String?, content: String?): Page<ReviewResponse> {
+        val reviews =
+            reviewRepository.findAllByTitleContainingOrContentContaining(pageable, title, content)
         return reviews.map { ReviewResponse.of(it) }
     }
 
