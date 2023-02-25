@@ -34,9 +34,13 @@ class RestaurantController(
     @Operation(summary = "Find restaurants with pagination")
     fun findRestaurants(
         @PageableDefault(size = 20, sort = ["createdAt"], direction = Sort.Direction.DESC)
-        pageable: Pageable
+        pageable: Pageable,
+
+        @RequestParam(value = "category", required = false)
+        @Schema(description = "Filter by category")
+        category: String?,
     ): ResponseEntity<Page<RestaurantResponse>> {
-        val restaurants = restaurantService.findRestaurants(pageable)
+        val restaurants = restaurantService.findRestaurants(pageable, category)
         return ResponseEntity.ok(restaurants)
     }
 

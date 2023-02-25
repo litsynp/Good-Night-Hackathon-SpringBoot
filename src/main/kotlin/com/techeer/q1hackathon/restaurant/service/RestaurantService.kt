@@ -16,8 +16,8 @@ class RestaurantService(
 ) {
 
     @Transactional(readOnly = true)
-    fun findRestaurants(pageable: Pageable): Page<RestaurantResponse> {
-        val restaurants = restaurantRepository.findAll(pageable)
+    fun findRestaurants(pageable: Pageable, category: String?): Page<RestaurantResponse> {
+        val restaurants = restaurantRepository.findAllByCategory(pageable, category)
         return restaurants.map { RestaurantResponse.of(it) }
     }
 
