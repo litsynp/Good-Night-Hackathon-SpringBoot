@@ -74,3 +74,11 @@
 - [정길연](https://github.com/gilyeon00) ✨
 - [최세연](https://github.com/barabobBOB) ✨
 - [최우석](https://github.com/Sith-call) ✨
+
+## 구현 사항
+
+- Kotlin으로 구현
+
+- Restaurant, Review CRUD API
+
+- Swagger (http://localhost:8080/swagger-ui.html)
