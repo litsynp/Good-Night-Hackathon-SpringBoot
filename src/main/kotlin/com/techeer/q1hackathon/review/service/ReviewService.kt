@@ -6,6 +6,8 @@ import com.techeer.q1hackathon.review.domain.ReviewRepository
 import com.techeer.q1hackathon.review.dto.request.ReviewCreateRequest
 import com.techeer.q1hackathon.review.dto.request.ReviewEditRequest
 import com.techeer.q1hackathon.review.dto.response.ReviewResponse
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,8 +18,8 @@ class ReviewService(
 ) {
 
     @Transactional(readOnly = true)
-    fun findReviews(): List<ReviewResponse> {
-        val reviews = reviewRepository.findAll()
+    fun findReviews(pageable: Pageable): Page<ReviewResponse> {
+        val reviews = reviewRepository.findAll(pageable)
         return reviews.map { ReviewResponse.of(it) }
     }
 

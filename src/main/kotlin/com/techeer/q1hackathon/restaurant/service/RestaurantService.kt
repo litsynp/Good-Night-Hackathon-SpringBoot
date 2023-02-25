@@ -4,6 +4,8 @@ import com.techeer.q1hackathon.restaurant.domain.Restaurant
 import com.techeer.q1hackathon.restaurant.domain.RestaurantRepository
 import com.techeer.q1hackathon.restaurant.dto.request.RestaurantRequest
 import com.techeer.q1hackathon.restaurant.dto.response.RestaurantResponse
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
@@ -14,8 +16,8 @@ class RestaurantService(
 ) {
 
     @Transactional(readOnly = true)
-    fun findRestaurants(): List<RestaurantResponse> {
-        val restaurants = restaurantRepository.findAll()
+    fun findRestaurants(pageable: Pageable): Page<RestaurantResponse> {
+        val restaurants = restaurantRepository.findAll(pageable)
         return restaurants.map { RestaurantResponse.of(it) }
     }
 
