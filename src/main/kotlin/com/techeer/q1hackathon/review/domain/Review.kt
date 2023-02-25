@@ -1,10 +1,8 @@
 package com.techeer.q1hackathon.review.domain
 
+import com.techeer.q1hackathon.common.domain.BaseEntity
 import com.techeer.q1hackathon.restaurant.domain.Restaurant
 import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
 import jakarta.persistence.Lob
 import jakarta.persistence.ManyToOne
 
@@ -20,11 +18,7 @@ class Review(
     var content: String,
 
     var rating: Int,
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-) {
+) : BaseEntity() {
 
     fun update(title: String, content: String, rating: Int) {
         this.title = title

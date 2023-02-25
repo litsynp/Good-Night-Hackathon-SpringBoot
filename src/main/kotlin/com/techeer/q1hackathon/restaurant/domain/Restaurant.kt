@@ -1,9 +1,7 @@
 package com.techeer.q1hackathon.restaurant.domain
 
+import com.techeer.q1hackathon.common.domain.BaseEntity
 import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
 import java.time.LocalDateTime
 
 @Entity
@@ -13,11 +11,7 @@ class Restaurant(
     var category: String,
 
     private var deletedAt: LocalDateTime? = null,
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-) {
+) : BaseEntity() {
 
     fun update(name: String, category: String) {
         this.name = name
